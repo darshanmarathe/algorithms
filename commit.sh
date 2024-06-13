@@ -8,6 +8,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 # Add all changes to the staging area
+# sed -i -e 's/\r$//' scriptname.sh
 git add .
 
 # Commit changes with the provided message
