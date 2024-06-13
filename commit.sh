@@ -16,6 +16,6 @@ git commit -m "$COMMIT_MESSAGE"
 
 
 # Push changes to the remote repository (assuming 'origin' as the remote)
-git push origin master
+git push
 
 echo "Changes committed and pushed successfully!"
