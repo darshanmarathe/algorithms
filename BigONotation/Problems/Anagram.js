@@ -13,7 +13,7 @@ t.that(
   validAnagram("anagram", "nagaram"),
   'validAnagram("anagram", "nagaram")',
 ).isEquals(true); // true
-// t.that(validAnagram("rat","car") // false) // false
+t.that(validAnagram("rat", "car"), 'validAnagram("rat","car")').isEquals(false); // false) // false
 // t.that(validAnagram('awesome', 'awesom') // false
 // t.that(validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana') // false
 // t.that(validAnagram('qwerty', 'qeywrt') // true
