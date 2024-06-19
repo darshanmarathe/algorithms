@@ -8,21 +8,20 @@ const Test = function (name) {
       testName = tName;
       return this;
     },
-    isEquals: function (resValue) {
-      console.log(obj, resValue);
-      if (obj === resValue) {
+    isEquals: function (expected) {
+      if (obj === expected) {
         console.log("test", name, ":", testName, "passed");
         return true;
       }
       console.log("test", name, ":", testName, "failed");
-      console.info(this.failResult(resValue));
+      console.info(this.failResult(expected));
       testName = null;
       return this;
     },
-    failResult(res) {
+    failResult(expected) {
       const str = `
-      expected : ${JSON.stringify(obj)}
-      received : ${JSON.stringify(res)}
+      received : ${JSON.stringify(obj)}
+      expected : ${JSON.stringify(expected)}
             `;
       return str;
     },
