@@ -1,7 +1,7 @@
 {
-  "name": "workspace",
+  "name": "algorithms",
   "version": "1.0.0",
-  "description": "",
+  "description": "Darshan's Interview Prep Algorithms",
   "type": "module",
   "main": "index.js",
   "scripts": {
