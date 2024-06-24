@@ -14,6 +14,7 @@ function areThereDuplicates2(...args) {
   return false;
 }
 
+//One Liner solutuin
 function areThereDuplicates() {
   return new Set(arguments).size !== arguments.length;
 }
