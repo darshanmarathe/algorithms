@@ -9,20 +9,23 @@ function minSubArrayLen(array = [], sum = 0) {
   if (array.length < 2) return array.length;
   let i = 0;
   let tempMax = array[i];
-  let currentMin = +Infinity;
+  let currentMin = Infinity;
   for (let J = 1; J < array.length; J++) {
     tempMax = tempMax + array[J];
-    if (tempMax === sum) {
-      currentMin = J - i < currentMin ? J - i : currentMin;
-      i = J;
+
+    if (array[J] >= sum) {
+      currentMin = 1;
     }
-    if (tempMax > sum) {
+
+    if (tempMax >= sum) {
+      currentMin = J + 1 - i < currentMin ? J + 1 - i : currentMin;
       i++;
       J = i;
       tempMax = array[i];
     }
   }
 
+  if (currentMin === Infinity) return 0;
   return currentMin;
 }
 
@@ -35,8 +38,23 @@ t.that(
   minSubArrayLen([2, 1, 6, 5, 4], 9),
   `minSubArrayLen([2,1,6,5,4], 9)`,
 ).isEquals(2); // 2 -> because [5,4] is the smallest subarray
-// minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52) // 1 -> because [62] is greater than 52
-// minSubArrayLen([1,4,16,22,5,7,8,9,10],39) // 3
-// minSubArrayLen([1,4,16,22,5,7,8,9,10],55) // 5
-// minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11) // 2
-// minSubArrayLen([1,4,16,22,5,7,8,9,10],95) // 0
+t.that(
+  minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 19], 52),
+  `minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52)`,
+).isEquals(1); // 1 -> because [62] is greater than 52
+t.that(
+  minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 39),
+  `minSubArrayLen([1,4,16,22,5,7,8,9,10],39)`,
+).isEquals(3); // 3
+t.that(
+  minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55),
+  `minSubArrayLen([1,4,16,22,5,7,8,9,10],55)`,
+).isEquals(5); // 5
+t.that(
+  minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11),
+  `minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11)`,
+).isEquals(2); // 2
+t.that(
+  minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95),
+  `minSubArrayLen([1,4,16,22,5,7,8,9,10],95)`,
+).isEquals(0); // 0
