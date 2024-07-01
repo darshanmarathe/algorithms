@@ -13,10 +13,14 @@ function minSubArrayLen(array = [], sum = 0) {
   for (let J = 1; J < array.length; J++) {
     tempMax = tempMax + array[J];
 
+    //if the element is bigger than sum return 1
     if (array[J] >= sum) {
       currentMin = 1;
     }
 
+    // if the temp value is bigger or equals to sum
+    // check that calc current min val and then check its smaller than currentMin
+    //if yes then then replace
     if (tempMax >= sum) {
       currentMin = J + 1 - i < currentMin ? J + 1 - i : currentMin;
       i++;
@@ -25,7 +29,10 @@ function minSubArrayLen(array = [], sum = 0) {
     }
   }
 
+  // if the while array is smaller than the sum return 0
   if (currentMin === Infinity) return 0;
+
+  // return currentMin
   return currentMin;
 }
 
