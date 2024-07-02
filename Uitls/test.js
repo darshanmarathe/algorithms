@@ -25,6 +25,29 @@ const Test = function (name) {
             `;
       return str;
     },
+    Reset(_newName) {
+      this.name = _newName;
+    },
+    toBeArray: function (expected) {
+      if (!obj || !expected || obj.length !== expected.length) {
+        console.log("test", name, ":", testName, "failed");
+        console.info(this.failResult(expected));
+        return false;
+      }
+      for (let i = 0; i < obj.length; i++) {
+        const tru = obj[i];
+        const exp = expected[0];
+        if (tru === exp) {
+          expected = expected.slice(1);
+        } else {
+          console.log("test", name, ":", testName, "failed");
+          console.info(this.failResult(expected));
+          return false;
+        }
+      }
+      console.log("test", name, ":", testName, "passed");
+      return true;
+    },
   };
 };
 
