@@ -1,6 +1,6 @@
 #!/bin/bash
 git status
-sleep 20
+sleep 15
 
 # Check if a commit message is provided
 if [[ $# -eq 0 ]]; then
