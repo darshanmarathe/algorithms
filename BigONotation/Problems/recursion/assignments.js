@@ -3,11 +3,14 @@ import Test from "../../../Uitls/test.js";
 console.clear();
 var t = new Test("Assignment No :: 1 :: Power ");
 
-log(power(2, 0)); // 1
-log(power(2, 2)); // 4
-log(power(2, 4)); // 16
 
 function power(num1, num2) {
   if (num2 === 0) return 1;
   return num1 * power(num1, num2 - 1);
 }
+
+
+
+t.that(power(2, 0), `power(2, 0)`).isEquals(1); // 1
+t.that(power(2, 2), `power(2, 2)`).isEquals(4); // 4
+t.that(power(2, 4), `power(2, 4)`).isEquals(16); // 16
