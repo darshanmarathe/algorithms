@@ -1,6 +1,6 @@
 #!/bin/bash
 git status
-echo "if something is wrong press Ctrl/CMD + C commiting in 10 sec."
+echo "if something is wrong press Ctrl/CMD + C commiting in 10 secends."
 sleep 10
 
 # Check if a commit message is provided
