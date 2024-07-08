@@ -12,7 +12,7 @@ t.that(power(2, 0), `power(2, 0)`).isEquals(1); // 1
 t.that(power(2, 2), `power(2, 2)`).isEquals(4); // 4
 t.that(power(2, 4), `power(2, 4)`).isEquals(16); // 16
 
-t.Reset("Assignment No :: 2 ::  ");
+t.Reset("Assignment No :: 2 :: factorial ");
 
 function factorial(num) {
   if (num === 1) {
@@ -30,23 +30,45 @@ t.that(factorial(7), `factorial(7)`).isEquals(5040);
 t.Reset("Assignment No :: 3 :: Product Of Array ");
 
 function productOfArray(array = []) {
-  let result = 0;
-  if (array.length === 0) return result;
+  if (array.length === 1) return array[0];
+  let result = array[0];
 
-  if (array.length === 1) {
-    result += array[0];
+  function Helper(HelperInput = []) {
+    if (HelperInput.length === 0) return result;
+
+    result = result * HelperInput[0];
+    Helper(HelperInput.slice(1));
     return result;
   }
-
-  return result + productOfArray(array.slice(1));
+  Helper(array.slice(1));
+  return result;
 }
 
 t.that(productOfArray([1, 2, 3]), `productOfArray([1,2,3])`).isEquals(6);
 t.that(productOfArray([1, 2, 3, 10]), `productOfArray([1,2,3,10])`).isEquals(
   60
 );
-t.Reset("Assignment No :: 4 ::  ");
-t.Reset("Assignment No :: 5 ::  ");
+t.Reset("Assignment No :: 4 :: recursiveRange ");
+
+function recursiveRange(range) {
+  if (range === 0) return 0;
+  return range + recursiveRange(range - 1);
+}
+t.that(recursiveRange(3), `recursiveRange(3)`).isEquals(6);
+t.that(recursiveRange(6), `recursiveRange(6)`).isEquals(21);
+t.that(recursiveRange(10), `recursiveRange(10)`).isEquals(55);
+
+t.Reset("Assignment No :: 5 ::  fib");
+
+function fib(count) {
+  return count;
+}
+
+t.that(fib(4), `fib(4)`).isEquals(3);
+t.that(fib(10), `fib(10)`).isEquals(55);
+t.that(fib(28), `fib(28)`).isEquals(317811);
+t.that(fib(35), `fib(35)`).isEquals(9227465);
+
 t.Reset("Assignment No :: 6 ::  ");
 t.Reset("Assignment No :: 7 ::  ");
 
