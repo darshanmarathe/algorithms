@@ -12,6 +12,13 @@
 	// 	"description": "Log output to console"
 	// }
 {
+    "logln": {
+		"prefix": "logln",
+		"body": [
+			"log('================================ $1 =====================================');"
+		],
+		"description": "Test that is the same sorted array"
+	},
 	"Test that": {
 		"prefix": "tth",
 		"body": [
@@ -27,3 +34,4 @@
 		"description": "Test that is the same sorted array"
 	}
 }
+
