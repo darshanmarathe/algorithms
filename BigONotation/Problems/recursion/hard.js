@@ -55,15 +55,32 @@ t.that(
 
 t.Reset("Assignment Hard No :: 3 :: someRecursive with callback function ");
 
-const isOdd = val => val % 2 !== 0;
+log(
+  "================================ someRecursive with callback func ====================================="
+);
+const isOdd = (val) => {
+  return val % 2 !== 0;
+};
 
-
-function someRecursive(array = [] , cb = (val) => val ) {
-  // add whatever parameters you deem necessary - good luck!
+function someRecursive(array = [], cb = (val) => val) {
+  if (array.length === 0) return false;
+  if (cb(array[0]) === true) return true;
+  return someRecursive(array.slice(1), cb);
 }
 
-
-// someRecursive([1,2,3,4], isOdd) // true
-// someRecursive([4,6,8,9], isOdd) // true
-// someRecursive([4,6,8], isOdd) // false
-// someRecursive([4,6,8], val => val > 10); // false
+t.that(
+  someRecursive([1, 2, 3, 4], isOdd),
+  `someRecursive([1,2,3,4], isOdd)`
+).isEquals(true); // true
+t.that(
+  someRecursive([4, 6, 8, 9], isOdd),
+  `someRecursive([4,6,8,9], isOdd)`
+).isEquals(true); // true
+t.that(
+  someRecursive([4, 6, 8], isOdd),
+  `someRecursive([4,6,8], isOdd)`
+).isEquals(false); // false
+t.that(
+  someRecursive([4, 6, 8], (val) => val > 10),
+  `someRecursive([4,6,8], val => val > 10)`
+).isEquals(false); // false
