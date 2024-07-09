@@ -14,11 +14,12 @@ t.that(power(2, 4), `power(2, 4)`).isEquals(16); // 16
 
 t.Reset("Assignment No :: 2 :: factorial ");
 
-function factorial(num) {
-  if (num === 1) {
+function factorial(n) {
+  if (n === 0 || n === 1) {
     return 1;
+  } else {
+    return n * factorial(n - 1);
   }
-  return num * factorial(num - 1);
 }
 
 t.that(factorial(1), `factorial(1)`).isEquals(1);
@@ -60,16 +61,15 @@ t.that(recursiveRange(10), `recursiveRange(10)`).isEquals(55);
 
 t.Reset("Assignment No :: 5 ::  fib");
 
-function fib(count) {
-  return count;
+function fib(n) {
+  if (n < 2) {
+    return n;
+  } else {
+    return fib(n - 1) + fib(n - 2);
+  }
 }
 
 t.that(fib(4), `fib(4)`).isEquals(3);
 t.that(fib(10), `fib(10)`).isEquals(55);
 t.that(fib(28), `fib(28)`).isEquals(317811);
 t.that(fib(35), `fib(35)`).isEquals(9227465);
-
-t.Reset("Assignment No :: 6 ::  ");
-t.Reset("Assignment No :: 7 ::  ");
-
-t.Reset("Assignment No :: 7 ::  ");
