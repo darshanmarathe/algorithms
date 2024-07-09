@@ -26,7 +26,10 @@ const Test = function (name) {
       return str;
     },
     Reset(_newName) {
-      this.name = _newName;
+      name = _newName;
+    },
+    thatoBe: function (expected) {
+      return JSON.stringify(obj) === JSON.stringify(expected);
     },
     toBeArray: function (expected) {
       if (!obj || !expected || obj.length !== expected.length) {
