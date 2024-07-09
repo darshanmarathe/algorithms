@@ -9,4 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon BigONotation/Problems/recursion/assignments.js
+nodemon BigONotation/Problems/recursion/hard.js
