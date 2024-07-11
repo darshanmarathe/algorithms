@@ -93,16 +93,29 @@ log(
 
 function flatten(array = []) {
   // add whatever parameters you deem necessary - good luck!
-  return [];
+  if (Array.isArray(array) === false) return null;
+  let output = [];
+  for (const item of array) {
+    if (Array.isArray(item) === false) {
+      output.push(item);
+    } else {
+      output = output.concat(flatten(item));
+    }
+  }
+  return output;
 }
+console.clear();
 
-t.that(flatten([1, 2, 3, [4, 5]]), `flatten([1, 2, 3, [4, 5] ])`).isEquals([]); // [1, 2, 3, 4, 5]
+t.that(flatten(2), `flatten(2)`).isEquals(null);
+t.that(flatten([1, 2, 3, [4, 5]]), `flatten([1, 2, 3, [4, 5] ])`).toBe([
+  1, 2, 3, 4, 5,
+]); // [1, 2, 3, 4, 5]
 t.that(
   flatten([1, [2, [3, 4], [[5]]]]),
   `flatten([1, [2, [3, 4], [[5]]]])`
-).isEquals([]); // [1, 2, 3, 4, 5]
-t.that(flatten([[1], [2], [3]]), `flatten([[1],[2],[3]])`).isEquals(); // [1,2,3]
+).toBe([1, 2, 3, 4, 5]); // [1, 2, 3, 4, 5]
+t.that(flatten([[1], [2], [3]]), `flatten([[1],[2],[3]])`).toBe([1, 2, 3]); // [1,2,3]
 t.that(
   flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]),
   `flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])`
-).isEquals([]); // [1,2,3]
+).toBe([1, 2, 3]); // [1,2,3]
