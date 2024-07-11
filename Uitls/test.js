@@ -32,7 +32,7 @@ const Test = function (name) {
     toBe: function (expected) {
       if (JSON.stringify(obj) !== JSON.stringify(expected)) {
         console.log("test", name, ":", testName, "failed");
-        console.info(that.failResult(expected));
+        console.info(this.failResult(expected));
         return false;
       }
 

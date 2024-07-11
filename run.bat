@@ -1,3 +1,3 @@
 where nodemon 
 IF %ERRORLEVEL% NEQ 0 npm install -g nodemon 
-nodemon BigONotation\Problems\Recursion\hard.js
+call nodemon BigONotation\Problems\Recursion\hard2.js

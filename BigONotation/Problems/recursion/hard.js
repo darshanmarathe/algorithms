@@ -84,3 +84,25 @@ t.that(
   someRecursive([4, 6, 8], (val) => val > 10),
   `someRecursive([4,6,8], val => val > 10)`
 ).isEquals(false); // false
+
+t.Reset("Assignment Hard No :: 4 :: flattern nested array ");
+
+log(
+  "================================ flattern nested array ====================================="
+);
+
+function flatten(array = []) {
+  // add whatever parameters you deem necessary - good luck!
+  return [];
+}
+
+t.that(flatten([1, 2, 3, [4, 5]]), `flatten([1, 2, 3, [4, 5] ])`).isEquals([]); // [1, 2, 3, 4, 5]
+t.that(
+  flatten([1, [2, [3, 4], [[5]]]]),
+  `flatten([1, [2, [3, 4], [[5]]]])`
+).isEquals([]); // [1, 2, 3, 4, 5]
+t.that(flatten([[1], [2], [3]]), `flatten([[1],[2],[3]])`).isEquals(); // [1,2,3]
+t.that(
+  flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]),
+  `flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])`
+).isEquals([]); // [1,2,3]
