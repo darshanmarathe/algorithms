@@ -29,7 +29,7 @@ let states = [
     "West Bengal"
   ];
 
-  let sortedNumberArray = Array.from({ length: 500 }, (_, i) => i + 1)
+  const sortedNumberArray = (num) => Array.from({ length: num }, (_, i) => i + 1)
   .sort(() => Math.random() - 0.5) // Shuffle the array
   .sort((a, b) => a - b); // Sort the array
 
