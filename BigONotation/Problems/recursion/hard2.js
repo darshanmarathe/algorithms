@@ -3,20 +3,49 @@ import Test from "../../../Uitls/test.js";
 console.clear();
 var t = new Test("Assignment Harder recursion No :: 1 ::  capitalizeFirst");
 
-function capitalizeFirst(str) {
+function capitalizeFirst(array =[]) {
   // add whatever parameters you deem necessary - good luck!
-  return [];
+  function capitalizeWord(word = '') {
+    return word[0].toUpperCase() + word.slice(1, word.length);
+  }
+  if (array.length === 0) {
+    return [];
+  }
+  let newArray = [];
+  newArray.push(capitalizeWord(array[0]));
+  newArray = newArray.concat(capitalizeFirst(array.slice(1)));
+  return newArray;
 }
 
 t.that(
   capitalizeFirst(["car", "taco", "banana"]),
   `capitalizeFirst(['car','taco','banana']);`
-).isEquals([]); // ['Car','Taco','Banana']
+).toBe(['Car','Taco','Banana']); // ['Car','Taco','Banana']
+
+t.that(
+  capitalizeFirst(["darshan", "shivansh", "aditi"]),
+  `capitalizeFirst(['darshan','shivansh','aditi']);`
+).toBe(['Darshan','Shivansh','Aditi']); // ['Car','Taco','Banana']
 
 t.Reset("Assignment Harder recursion No :: 2 ::  nestedEvenSum");
 
-function nestedEvenSum() {
+function nestedEvenSum(obj) {
   // add whatever parameters you deem necessary - good luck!
+  function isEven(num) {
+    return num % 2 === 0;
+  }
+  function sumEvenNumbers(obj) {
+    let sum = 0;
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        sum += sumEvenNumbers(obj[key]);
+      } else if (typeof obj[key] === "number" && isEven(obj[key])) {
+        sum += obj[key];
+      }
+    }
+    return sum;
+  }
+  return sumEvenNumbers(obj);
 }
 
 var obj1 = {
@@ -42,13 +71,18 @@ var obj2 = {
 t.that(nestedEvenSum(obj1), `nestedEvenSum(obj1)`).isEquals(6); // 6
 t.that(nestedEvenSum(obj2), `nestedEvenSum(obj2)`).isEquals(10); // 10
 
+
 t.Reset("Assignment Harder recursion No :: 3 ::  capitalizeWords");
 function capitalizedWords(array) {
   // add whatever parameters you deem necessary - good luck!
+  return array.map(m => m.toUpperCase());
 }
 
 let words = ["i", "am", "learning", "recursion"];
-t.that(capitalizedWords(words), `capitalizedWords(words)`).isEquals([]); // ['I', 'AM', 'LEARNING', 'RECURSION']
+t.that(capitalizedWords(words), `capitalizedWords(words)`).toBe(['I', 'AM', 'LEARNING', 'RECURSION']); // 
+
+
+
 
 let obj = {
   num: 1,
@@ -73,10 +107,25 @@ const compare = {
     },
   },
 };
+
+
 t.Reset("Assignment Harder recursion No :: 4 ::  stringifyNumbers");
-function stringifyNumbers(obj) {}
+function stringifyNumbers(obj) {
+    function stringiFyNumber(obj) {
+      for (let key in obj) {
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+          stringiFyNumber(obj[key]);
+        } else if (typeof obj[key] === "number") {
+          obj[key] = obj[key].toString();
+        }
+      }
+      return obj;
+    }
+    return stringiFyNumber(obj);
+}
 
 t.that(stringifyNumbers(obj), `stringifyNumbers(obj)`).toBe(compare);
+
 
 t.Reset("Assignment Harder recursion No :: 5 ::  collectStrings");
 
@@ -95,5 +144,19 @@ const obj3 = {
     },
   },
 };
-function collectStrings(_obj) {}
-t.that(collectStrings(obj3), `collectStrings(obj3) `).isEquals(); // ["foo", "bar", "baz"])
+function collectStrings(_obj) {
+  let result = [];
+  function collect(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key]!== null) {
+        collect(obj[key]);
+      } else if (typeof obj[key] === "string") {
+        result.push(obj[key]);
+      }
+    }
+  }
+  collect(_obj);
+  return result;
+ 
+}
+t.that(collectStrings(obj3), `collectStrings(obj3) `).toBe(["foo", "bar", "baz"]); 
