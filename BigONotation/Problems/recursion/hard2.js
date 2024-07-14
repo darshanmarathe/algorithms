@@ -111,19 +111,18 @@ const compare = {
 
 t.Reset("Assignment Harder recursion No :: 4 ::  stringifyNumbers");
 function stringifyNumbers(obj) {
-    function stringiFyNumber(obj) {
-      for (let key in obj) {
-        if (typeof obj[key] === "object" && obj[key] !== null) {
-          stringiFyNumber(obj[key]);
-        } else if (typeof obj[key] === "number") {
-          obj[key] = obj[key].toString();
-        }
-      }
-      return obj;
+  var newObj = {};
+  for (var key in obj) {
+    if (typeof obj[key] === 'number') {
+      newObj[key] = obj[key].toString();
+    } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key]);
+    } else {
+      newObj[key] = obj[key];
     }
-    return stringiFyNumber(obj);
+  }
+  return newObj;
 }
-
 t.that(stringifyNumbers(obj), `stringifyNumbers(obj)`).toBe(compare);
 
 
