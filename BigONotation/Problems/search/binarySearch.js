@@ -20,18 +20,27 @@ function binarySearchNum(arr = [], target = 0) {
   }
 }
 
+// In Binary Search Algorithm by Index we do not modify the orginl array
+// we just modify the indexes by start, middle, end
 function BinarySearch(arr = [], elem = 0) {
+  // take the whole length
   let len = arr.length;
+  // starts at 0
   let start = 0;
+  // end at the max
   let end = len - 1;
+  // calculate the middle index for each iteration
   let middle = Math.floor((start + end) / 2);
 
   while (arr[middle] !== elem && start <= end) {
     if (elem < arr[middle]) {
+      // if element is less than middle element, ignore left half
       end = middle - 1;
     } else {
+      // if element is more than middle element, ignore right half
       start = middle + 1;
     }
+    // update middle index
     middle = Math.floor((start + end) / 2);
   }
   if (arr[middle] === elem) return middle;
