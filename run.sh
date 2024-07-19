@@ -9,4 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon BigONotation/Problems/sorting/sort.js
+nodemon BigONotation/Problems/sorting/bubbleSort.js
