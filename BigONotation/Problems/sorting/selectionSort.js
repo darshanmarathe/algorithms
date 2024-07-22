@@ -2,7 +2,7 @@ const { log, clear, table } = console;
 import Test from "../../../Uitls/test.js";
 clear();
 var t = new Test("Sorting Algoriths :: 1 :: selection sort()");
-// Note to come here....
+// Note :: o(n2) complexity here
 
 const array = [64, 34, 25, 12, 22, 15, 11, 44, 33];
 
