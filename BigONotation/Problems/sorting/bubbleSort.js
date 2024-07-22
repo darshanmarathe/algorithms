@@ -28,14 +28,19 @@ const nearlySortedArray = [5, 1, 2, 3, 4];
 // }
 
 function bubbleSort(arr = []) {
+  //mainitaing a variable for performance if no swaps done means its done
   let noSwaps = true;
+  //the swap function
   function swap(arry, i, j) {
     const temp = arry[i];
     arry[i] = arry[j];
     arry[j] = temp;
     noSwaps = false;
   }
+
+  // Reverse itaration of array
   for (let i = arr.length; i > 0; i--) {
+    // making no swap true for each itration
     noSwaps = true;
     for (let j = 0; j < i - 1; j++) {
       const first = arr[j];

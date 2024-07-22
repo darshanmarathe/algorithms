@@ -20,5 +20,12 @@
 			"t.that($1 ,`$1`).toBeArray($2);"
 		],
 		"description": "Test that is the same sorted array"
+	},
+	"Test that Object": {
+		"prefix": "tttb",
+		"body": [
+			"t.that($1 ,`$1`).toBe($2);"
+		],
+		"description": "Test that is the same object"
 	}
 }
