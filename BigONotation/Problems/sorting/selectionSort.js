@@ -2,8 +2,9 @@ const { log, clear, table } = console;
 import Test from "../../../Uitls/test.js";
 clear();
 var t = new Test("Sorting Algoriths :: 1 :: selection sort()");
-
 // Note to come here....
+
+const array = [64, 34, 25, 12, 22, 15, 11, 44, 33];
 
 const shortArray = [1, 5, 2, 3, 4];
 

@@ -2,10 +2,9 @@ const { log, clear, table } = console;
 import Test from "../../../Uitls/test.js";
 clear();
 var t = new Test("Sorting Algoriths :: 1 :: Bubble sort()");
+// NOTE ::  Bubble sort is good for nearly sorted arrays not so good for large arrays
+
 const array = [64, 34, 25, 12, 22, 15, 11, 44, 33];
-
-// Bubble sort is good for nearly sorted arrays not so good for large arrays
-
 const shortArray = [1, 5, 2, 3, 4];
 
 const nearlySortedArray = [5, 1, 2, 3, 4];
