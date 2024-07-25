@@ -9,4 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon BigONotation/Problems/sorting/insertionSort.js
+nodemon BigONotation/Problems/sorting/mergeSort.js
