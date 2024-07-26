@@ -10,3 +10,5 @@ let difficulty = [2, 4, 6, 8, 10],
   worker = [4, 5, 6, 7];
 
 var maxProfitAssignment = function (difficulty, profit, worker) {};
+
+console.log("doing something");
