@@ -1,3 +1,3 @@
 where nodemon 
 IF %ERRORLEVEL% NEQ 0 npm install -g nodemon 
-call nodemon BigONotation\Problems\sorting\mergeSort.js
+call nodemon BigONotation\Problems\sorting\quickSort.js
