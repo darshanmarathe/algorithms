@@ -9,4 +9,5 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon BigONotation/Problems/sorting/radixSort.js
+nodemon DataStructures/Structures/SinglyLinkList.js
+
