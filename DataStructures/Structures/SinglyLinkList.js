@@ -98,6 +98,40 @@ class SinglyLinkedList {
 
     return false;
   }
+
+  insert(index, value) {
+    if (index < 0 || index >= this.length) return false;
+    const newNode = new Node(value);
+    if (index == 0) {
+      return this.unshift(value);
+    }
+    if (index == this.length) {
+      return this.push(value);
+    }
+
+    let node = this.get(index - 1);
+    const temp = node.next;
+    node.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index == 0) {
+      return this.shift();
+    }
+    if (index == this.length) {
+      return this.pop();
+    }
+
+    let prev = this.get(index - 1);
+    let removedNode = prev.next;
+    prev.next = removedNode.next;
+    this.length--;
+    return removedNode;
+  }
 }
 
 // const node1 = new Node(1);
@@ -106,13 +140,16 @@ class SinglyLinkedList {
 // node1.next.next.next = new Node(4);
 
 const linkedList = new SinglyLinkedList();
-linkedList.push(1);
-linkedList.push(2);
-linkedList.push(3);
-linkedList.push(4);
+linkedList.push("A");
+linkedList.push("B");
+linkedList.push("D");
+linkedList.push("E");
+linkedList.insert(2, "C");
+
 //linkedList.pop();
-linkedList.shift();
-linkedList.unshift(11);
-linkedList.set(2, 200);
+// linkedList.shift();
+// linkedList.unshift(11);
+// linkedList.set(2, 200);
 log(linkedList.get(2));
+linkedList.remove(2);
 dir(linkedList);
