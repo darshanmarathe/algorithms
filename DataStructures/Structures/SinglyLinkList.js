@@ -31,6 +31,29 @@ class SinglyLinkedList {
       current = current.next;
     }
   }
+
+  shift() {
+    if (this.length === 0) return undefined;
+    let currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) this.tail - null;
+    return currentHead;
+  }
+
+  unshift(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
   pop() {
     if (this.length === 0) return undefined;
     let current = this.head;
@@ -60,5 +83,7 @@ linkedList.push(1);
 linkedList.push(2);
 linkedList.push(3);
 linkedList.push(4);
-linkedList.pop();
+//linkedList.pop();
+linkedList.shift();
+linkedList.unshift(11);
 console.dir(linkedList);
