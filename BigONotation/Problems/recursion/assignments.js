@@ -1,4 +1,4 @@
-const log = console.log;
+const { log, dir, table } = console.log;
 import Test from "../../../Uitls/test.js";
 console.clear();
 var t = new Test("Assignment No :: 1 :: Power ");
