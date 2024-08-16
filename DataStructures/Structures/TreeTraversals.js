@@ -22,7 +22,7 @@ class Tree {
     space += 5;
     this.printTree(node.right, space, level + 1);
 
-    console.log(" ".repeat(space - 5) + node.value + " |");
+    console.log(" ".repeat(space - 5) + node.value + "|");
 
     this.printTree(node.left, space, level + 1);
   }
@@ -175,8 +175,8 @@ bst.insert(14);
 bst.insert(9);
 
 bst.insert(8);
-
-
-log(bst.DFSPreOrder(13));
-
 bst.printTree();
+
+
+log(bst.DFSPreOrder(5));
+
