@@ -105,7 +105,6 @@ class Tree {
   }
 
  DFSPreOrder(value = this.root.value) {
-    let queue = [],
     data = [],
     current = this.find(value);
     function traverse(node) {
@@ -115,17 +114,35 @@ class Tree {
     }
     traverse(current)
     return data;
-    
-  
-
   }
 
 
-  DFSPostOrder(value){}
+  DFSPostOrder(value){
+    let data = [],
+    current = this.find(value);
+    function traverse(node) {
+  
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+        data.push(node.value);
+    }
+    traverse(current)
+    return data;
+  }
 
 
   DFSInOrder(value){
+    let data = [],
+    current = this.find(value);
+    function traverse(node) {
+  
+        if(node.left) traverse(node.left);
+        data.push(node.value);
+        if(node.right) traverse(node.right);
 
+    }
+    traverse(current)
+    return data;
   }
 
   // o(lon n)
@@ -178,5 +195,5 @@ bst.insert(8);
 bst.printTree();
 
 
-log(bst.DFSPreOrder(5));
+log(bst.DFSPostOrder(5));
 
