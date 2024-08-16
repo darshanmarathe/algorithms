@@ -37,20 +37,17 @@ class DoublyLinkedList {
   // o(1)
   pop() {
     if (this.length === 0) return undefined;
-    let current = this.head;
-    let newTail = this.head;
-    while (current.next) {
-      newTail = current;
-      current = current.next;
-    }
-    this.tail = newTail;
-    this.tail.next = null;
-    this.length--;
-    if (this.length === 0) {
+    let poppedNode = this.tail;
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
     }
-    return current.val;
+    this.length--;
+    return poppedNode;
   }
 
   traverse() {
@@ -64,11 +61,18 @@ class DoublyLinkedList {
   // o(1)
   shift() {
     if (this.length === 0) return undefined;
-    let currentHead = this.head;
-    this.head = currentHead.next;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+
     this.length--;
-    if (this.length === 0) this.tail - null;
-    return currentHead;
+    return oldHead;
   }
 
   // o(1)
@@ -79,22 +83,37 @@ class DoublyLinkedList {
       this.tail = newNode;
     } else {
       newNode.next = this.head;
+      this.head.prev = newNode;
       this.head = newNode;
     }
     this.length++;
     return this;
   }
 
+  // Check Mid if its bigger than Index start from end else begiaing
   get(index) {
     if (index < 0 || index >= this.length) return null;
-    let current = this.head;
-    let count = 0;
-    while (count !== index) {
-      current = current.next;
-      count++;
-    }
 
-    return current;
+    const mid = Math.floor(this.length / 2);
+    if (mid < index) {
+      let current = this.head;
+
+      let count = 0;
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+      return current;
+    } else {
+      let count = this.length - 1;
+      let current = this.tail;
+
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+      return current;
+    }
   }
 
   set(index, value) {
@@ -117,10 +136,14 @@ class DoublyLinkedList {
       return this.push(value);
     }
 
-    let node = this.get(index - 1);
-    const temp = node.next;
-    node.next = newNode;
-    newNode.next = temp;
+    let beforeNode = this.get(index - 1);
+
+    let afterNode = beforeNode.next;
+
+    beforeNode.next = newNode;
+    newNode.prev = beforeNode;
+    newNode.next = afterNode;
+    afterNode.prev = newNode;
     this.length++;
     return true;
   }
@@ -135,9 +158,14 @@ class DoublyLinkedList {
       return this.pop();
     }
 
-    let prev = this.get(index - 1);
-    let removedNode = prev.next;
-    prev.next = removedNode.next;
+    let removedNode = this.get(index);
+
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+
+    removedNode.next = null;
+    removedNode.prev = null;
+
     this.length--;
     return removedNode;
   }
@@ -178,8 +206,44 @@ class DoublyLinkedList {
 const linkedList = new DoublyLinkedList();
 
 linkedList.push("A");
+linkedList.push("B");
+linkedList.push("C");
 
-t.that(linkedList.print()[0], `linkedList.print()[0]`).isEquals("A");
+linkedList.unshift("Z");
+
+t.that(linkedList.head.val, `Unshift should work`).isEquals("Z");
+
+t.that(linkedList.print()[0], `linkedList.print()[0]`).isEquals("Z");
+
+const popped = linkedList.pop();
+
+t.that(popped.val, `Pop should work`).isEquals("C");
+
+const shifted = linkedList.shift();
+
+t.that(shifted.val, `Shift should should work`).isEquals("Z");
+t.that(linkedList.head.val, `Pop should work`).isEquals("A");
+
+t.that(linkedList.get(0).val, `linkedList.get(0)`).isEquals("A");
+linkedList.set(1, "Z");
+t.that(
+  linkedList.get(1).val,
+  `linked List sat check linkedList.get(2)`
+).isEquals("Z");
+
+linkedList.insert(1, "B");
+linkedList.insert(2, "C");
+
+t.that(linkedList.get(2).val, `Insert is working linkedList.get(2)`).isEquals(
+  "C"
+);
+
+linkedList.remove(2);
+
+t.that(linkedList.get(2).val, `removve is working linkedList.get(2)`).isEquals(
+  "Z"
+);
+
 // linkedList.push("B");
 // linkedList.push("D");
 // linkedList.push("E");
