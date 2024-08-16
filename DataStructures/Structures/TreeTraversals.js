@@ -22,7 +22,7 @@ class Tree {
     space += 5;
     this.printTree(node.right, space, level + 1);
 
-    console.log(" ".repeat(space - 5) + node.value);
+    console.log(" ".repeat(space - 5) + node.value + " |");
 
     this.printTree(node.left, space, level + 1);
   }
@@ -104,7 +104,29 @@ class Tree {
     return data;
   }
 
-  DFSPreOrder(value) {}
+ DFSPreOrder(value = this.root.value) {
+    let queue = [],
+    data = [],
+    current = this.find(value);
+    function traverse(node) {
+        data.push(node.value);
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current)
+    return data;
+    
+  
+
+  }
+
+
+  DFSPostOrder(value){}
+
+
+  DFSInOrder(value){
+
+  }
 
   // o(lon n)
   find(value) {
@@ -149,7 +171,12 @@ bst.insert(2);
 bst.insert(7);
 bst.insert(16);
 bst.insert(11);
+bst.insert(14);
+bst.insert(9);
 
-log(bst.BFS());
+bst.insert(8);
+
+
+log(bst.DFSPreOrder(13));
 
 bst.printTree();
