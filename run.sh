@@ -9,5 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon DataStructures/Structures/DoublyLinkList.js
-
+nodemon DataStructures/Structures/TreeTraversals.js
