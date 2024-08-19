@@ -9,4 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon DataStructures/Structures/TreeTraversals.js
+nodemon DataStructures/Structures/PriorityQueue.js

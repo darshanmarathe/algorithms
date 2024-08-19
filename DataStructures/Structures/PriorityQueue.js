@@ -1,14 +1,23 @@
 const { log, clear } = console;
 import Test from "../../Uitls/test.js";
 clear();
-var t = new Test("Assignment No :: 1 :: BinaryHeap ");
-class MaxBinaryHeap {
+var t = new Test("Assignment No :: 1 :: Priority Queue ");
+
+class Node {
+  constructor(value, priority) {
+    this.value = value;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
   constructor() {
     this.values = [];
   }
 
-  insert(element) {
-    this.values.push(element);
+  enqueue(priority, value) {
+    const newNode = new Node(value, priority);
+    this.values.push(newNode);
     this.bubbleUp();
   }
 
@@ -18,21 +27,21 @@ class MaxBinaryHeap {
     while (idx > 0) {
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.values[parentIdx];
-      if (element <= parent) break;
+      if (element.priority >= parent.priority) break;
       this.values[parentIdx] = element;
       this.values[idx] = parent;
       idx = parentIdx;
     }
   }
 
-  extractMax() {
-    const max = this.values[0];
+  dequeue() {
+    const min = this.values[0];
     const end = this.values.pop();
     if (this.values.length > 0) {
       this.values[0] = end;
       this.sinkDown();
     }
-    return max;
+    return min;
   }
 
   sinkDown() {
@@ -47,15 +56,15 @@ class MaxBinaryHeap {
 
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild > element) {
+        if (leftChild.priority < element.priority) {
           swap = leftChildIdx;
         }
       }
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
         if (
-          (swap === null && rightChild > element) ||
-          (swap !== null && rightChild > leftChild)
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
         ) {
           swap = rightChildIdx;
         }
@@ -69,20 +78,19 @@ class MaxBinaryHeap {
 }
 
 // Example usage:
-let heap = new MaxBinaryHeap();
-heap.insert(55);
-heap.insert(39);
-heap.insert(41);
-heap.insert(18);
-heap.insert(27);
-heap.insert(12);
-heap.insert(33);
+let heap = new PriorityQueue();
+heap.enqueue(55, "Get Milk");
+heap.enqueue(39, "Get Cheese");
+heap.enqueue(41, "Do the dishes");
+heap.enqueue(18, "do the other chors");
+heap.enqueue(27, "walk the dog");
+heap.enqueue(12, "give him bath");
+heap.enqueue(33, "pay the taxes");
 
-log(heap.values); // [55, 39, 41, 18, 27, 12, 33]
-t.that(heap.values.length, `heap.values.length to be 7`).isEquals(7);
-log(heap.extractMax()); // 55
-t.that(
-  heap.values.length,
-  `heap.values.length to be 6 after extractMax`
-).isEquals(6);
-log(heap.values); // [41, 39, 33, 18, 27, 12]
+log(heap.values.map((i) => i.priority)); // [ 12, 27, 18, 55,39, 41, 33]
+
+log(heap.dequeue()); // 12
+
+log(heap.dequeue()); // 18
+
+log(heap.values.map((i) => i.priority)); // [ 12, 27, 18, 55,39, 41, 33]
