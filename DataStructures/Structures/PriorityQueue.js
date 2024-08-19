@@ -1,4 +1,4 @@
-const { log, clear } = console;
+const { log, clear, table } = console;
 import Test from "../../Uitls/test.js";
 clear();
 var t = new Test("Assignment No :: 1 :: Priority Queue ");
@@ -87,10 +87,10 @@ heap.enqueue(27, "walk the dog");
 heap.enqueue(12, "give him bath");
 heap.enqueue(33, "pay the taxes");
 
-log(heap.values.map((i) => i.priority)); // [ 12, 27, 18, 55,39, 41, 33]
+table(heap.values); // [ 12, 27, 18, 55,39, 41, 33]
 
 log(heap.dequeue()); // 12
 
 log(heap.dequeue()); // 18
 
-log(heap.values.map((i) => i.priority)); // [ 12, 27, 18, 55,39, 41, 33]
+table(heap.values); // [ 12, 27, 18, 55,39, 41, 33]
