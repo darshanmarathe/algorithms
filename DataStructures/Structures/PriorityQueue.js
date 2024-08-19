@@ -21,6 +21,7 @@ class PriorityQueue {
     this.bubbleUp();
   }
 
+  // o(log n)
   bubbleUp() {
     let idx = this.values.length - 1;
     const element = this.values[idx];
@@ -34,6 +35,7 @@ class PriorityQueue {
     }
   }
 
+  // o(log n)
   dequeue() {
     const min = this.values[0];
     const end = this.values.pop();
