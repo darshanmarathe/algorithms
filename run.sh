@@ -9,4 +9,4 @@ else
 fi
 
 # Run nodemon with the specified file
-nodemon DataStructures/Structures/HashTables.js
+nodemon DataStructures/Structures/Graphs.js

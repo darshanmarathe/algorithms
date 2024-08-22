@@ -4,7 +4,7 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gco='git checkout'
-alias gl='git log -10'
+alias gl='git log'
 
 # Alias to stage and commit all changes with a message
 alias gac='git add . && git commit -m'
