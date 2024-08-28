@@ -73,6 +73,27 @@ class Graph {
     }
     return result;
   }
+
+  BreadthFirst(start) {
+    const queue = [start];
+    const result = [];
+    const visited = { [start]: true };
+
+    let currentVertex;
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((element) => {
+        if (!visited[element]) {
+          visited[element] = true;
+          queue.push(element);
+        }
+      });
+    }
+
+    return result;
+  }
 }
 
 const g = new Graph();
@@ -88,5 +109,7 @@ g.AddEdge("London", "Mosco");
 
 log(g.DepthFirstRecursive("Pune"));
 log(g.DepthFirstIterative("Pune"));
+
+log(g.BreadthFirst("Tokyo"));
 
 t.that(g, `graph not null`).not.isEquals(null);
